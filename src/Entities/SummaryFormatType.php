@@ -1,10 +1,10 @@
 <?php
 
-namespace Zhiru\LaravelMoodle\Entities;
+namespace DocasDev\LaravelMoodle\Entities;
 
 /**
  * Class SummaryFormatType
- * @package Zhiru\LaravelMoodle\Entities
+ * @package DocasDev\LaravelMoodle\Entities
  */
 class SummaryFormatType
 {

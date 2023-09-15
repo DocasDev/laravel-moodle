@@ -1,15 +1,15 @@
 <?php
 
-namespace Zhiru\LaravelMoodle\Clients\Adapters;
+namespace DocasDev\LaravelMoodle\Clients\Adapters;
 
-use Zhiru\LaravelMoodle\Clients\BaseAdapter;
-use Zhiru\LaravelMoodle\Connection;
+use DocasDev\LaravelMoodle\Clients\BaseAdapter;
+use DocasDev\LaravelMoodle\Connection;
 use Assert\Assertion;
 use GuzzleHttp\Client as HttpClient;
 
 /**
  * Class RestClient
- * @package Zhiru\LaravelMoodle\Clients
+ * @package DocasDev\LaravelMoodle\Clients
  *
  * @method HttpClient getClient()
  */

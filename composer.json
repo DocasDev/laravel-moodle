@@ -1,39 +1,39 @@
 {
-    "name": "zhiru/laravel-moodle",
+    "name": "DocasDev/laravel-moodle",
     "description": "Laravel Moodle client",
     "license": "MIT",
     "version": "1.0.0",
     "authors": [
         {
-            "name": "Felipe ALmeman",
-            "email": "felipe@airese.com.br",
-            "homepage": "http://aireset.com.br"
+            "name": "Docas Developement",
+            "email": "docasdev@gmail.com",
+            "homepage": "https://github.com/DocasDev/laravel-moodle"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "1.0.0",
     "prefer-stable": true,
     "require": {
-        "guzzlehttp/guzzle": "^6.3",
-        "beberlei/assert": "^3.1"
+        "guzzlehttp/guzzle": "^7.2",
+        "beberlei/assert": "^3.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "~6.0"
+        "phpunit/phpunit": "~10.1"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Zhiru\\LaravelMoodle\\LaravelMoodleServiceProvider"
+                "DocasDev\\LaravelMoodle\\LaravelMoodleServiceProvider"
             ]
         }
     },
     "autoload": {
         "psr-4": {
-            "Zhiru\\LaravelMoodle\\": "src/"
+            "DocasDev\\LaravelMoodle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Zhiru\\LaravelMoodle\\Tests\\": "tests/"
+            "DocasDev\\LaravelMoodle\\Tests\\": "tests/"
         }
     }
 }

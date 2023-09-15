@@ -1,16 +1,16 @@
 <?php
 
-namespace Zhiru\LaravelMoodle\Clients;
+namespace DocasDev\LaravelMoodle\Clients;
 
-use Zhiru\LaravelMoodle\Connection;
-use Zhiru\LaravelMoodle\Exceptions\ApiException;
+use DocasDev\LaravelMoodle\Connection;
+use DocasDev\LaravelMoodle\Exceptions\ApiException;
 use ReflectionClass;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
  * Class BaseAdapter
- * @package Zhiru\LaravelMoodle\Clients
+ * @package DocasDev\LaravelMoodle\Clients
  */
 abstract class BaseAdapter implements ClientAdapterInterface
 {

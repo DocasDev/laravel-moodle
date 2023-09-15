@@ -1,18 +1,18 @@
 <?php
 
-namespace Zhiru\LaravelMoodle\Tests\Services;
+namespace DocasDev\LaravelMoodle\Tests\Services;
 
-use Zhiru\LaravelMoodle\Clients\Adapters\RestClient;
-use Zhiru\LaravelMoodle\Clients\ClientAdapterInterface;
-use Zhiru\LaravelMoodle\Services\Course;
-use Zhiru\LaravelMoodle\Tests\MoodleTestCase;
-use Zhiru\LaravelMoodle\Entities\CourseCollection;
-use Zhiru\LaravelMoodle\Entities\Dto\Course as CourseDto;
-use Zhiru\LaravelMoodle\Entities\Course as CourseEntity;
+use DocasDev\LaravelMoodle\Clients\Adapters\RestClient;
+use DocasDev\LaravelMoodle\Clients\ClientAdapterInterface;
+use DocasDev\LaravelMoodle\Services\Course;
+use DocasDev\LaravelMoodle\Tests\MoodleTestCase;
+use DocasDev\LaravelMoodle\Entities\CourseCollection;
+use DocasDev\LaravelMoodle\Entities\Dto\Course as CourseDto;
+use DocasDev\LaravelMoodle\Entities\Course as CourseEntity;
 
 /**
  * Class CourseTest
- * @package Zhiru\LaravelMoodle\Tests\Services
+ * @package DocasDev\LaravelMoodle\Tests\Services
  */
 class CourseTest extends MoodleTestCase
 {
