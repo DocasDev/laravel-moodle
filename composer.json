@@ -10,7 +10,7 @@
             "homepage": "https://github.com/DocasDev/laravel-moodle"
         }
     ],
-    "minimum-stability": "1.0.0",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "guzzlehttp/guzzle": "^7.2",
