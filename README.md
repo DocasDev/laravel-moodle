@@ -5,7 +5,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/DocasDev/laravel-moodle.svg?style=flat-square)](https://packagist.org/packages/DocasDev/laravel-moodle)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/DocasDev/laravel-moodle/master.svg?style=flat-square)](https://travis-ci.org/DocasDev/laravel-moodle)
-[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/DocasDev/laravel-moodle.svg?maxAge=86400&style=flat-square)](https://scrutinizer-ci.com/g/DocasDev/laravel-moodle/?# branch=master)
+[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/DocasDev/laravel-moodle.svg?maxAge=86400&style=flat-square)](https://scrutinizer-ci.com/g/DocasDev/laravel-moodle/?branch=main)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/25320a08-8af4-475e-a23e-3321f55bf8d2.svg?style=flat-square)](https://insight.sensiolabs.com/projects/25320a08-8af4-475e-a23e-3321f55bf8d2)
 [![Quality Score](https://img.shields.io/scrutinizer/g/DocasDev/laravel-moodle.svg?style=flat-square)](https://scrutinizer-ci.com/g/DocasDev/laravel-moodle)
 [![Total Downloads](https://img.shields.io/packagist/dt/DocasDev/laravel-moodle.svg?style=flat-square)](https://packagist.org/packages/DocasDev/laravel-moodle)
