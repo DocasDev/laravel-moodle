@@ -67,7 +67,7 @@ class RestClient extends BaseAdapter
             self::OPTION_TOKEN    => $this->getConnection()->getToken(),
         ];
 
-        $response = $this->getClient()->post(null, [
+        $response = $this->getClient()->post('', [
             'form_params' => array_merge($configuration, $arguments)
         ]);
 
