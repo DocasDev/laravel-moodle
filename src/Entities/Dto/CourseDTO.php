@@ -1,8 +1,8 @@
 <?php
 
-namespace DocasDev\LaravelMoodle\Entities;
+namespace DocasDev\LaravelMoodle\Entities\DTO;
 
-class Course extends Entity
+class CourseDTO
 {
     public int $id;
 

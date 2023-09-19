@@ -3,46 +3,24 @@
 namespace DocasDev\LaravelMoodle\Services;
 
 use DocasDev\LaravelMoodle\Clients\ClientAdapterInterface;
-use DocasDev\LaravelMoodle\Entities\Entity;
 use ReflectionClass;
 
-/**
- * Class Service
- * @package DocasDev\LaravelMoodle\Services
- */
 abstract class Service
 {
-    /**
-     * @var ClientAdapterInterface
-     */
-    private $client;
+    private ClientAdapterInterface $client;
 
-    /**
-     * Service constructor.
-     * @param ClientAdapterInterface $client
-     */
     public function __construct(ClientAdapterInterface $client)
     {
         $this->client = $client;
     }
 
-    /**
-     * Get service alias
-     * @return string
-     */
-    public function getAlias()
+    public function getAlias(): string
     {
         $reflectionClass = new ReflectionClass(static::class);
         return strtolower($reflectionClass->getShortName());
     }
 
-    /**
-     * Get array of converted to arrays entities
-     * Each entity data contains only filled entity properties
-     * @param Entity[] ...$entities
-     * @return array
-     */
-    protected function prepareEntityForSending(Entity ...$entities)
+    protected function prepareEntityForSending(...$entities): array
     {
         $convertedEntities = [];
 
@@ -61,13 +39,7 @@ abstract class Service
         return $convertedEntities;
     }
 
-    /**
-     * Send API request
-     * @param $function
-     * @param array $arguments
-     * @return array
-     */
-    final protected function sendRequest($function, array $arguments = [])
+    final protected function sendRequest(string $function, array $arguments = []): array
     {
         $response = $this->client->sendRequest($function, $arguments);
 

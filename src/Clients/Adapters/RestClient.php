@@ -7,44 +7,18 @@ use DocasDev\LaravelMoodle\Connection;
 use Assert\Assertion;
 use GuzzleHttp\Client as HttpClient;
 
-/**
- * Class RestClient
- * @package DocasDev\LaravelMoodle\Clients
- *
- * @method HttpClient getClient()
- */
 class RestClient extends BaseAdapter
 {
-    /**
-     *
-     */
     const OPTION_FORMAT = 'moodlewsrestformat';
 
-    /**
-     *
-     */
     const RESPONSE_FORMAT_JSON = 'json';
 
-    /**
-     *
-     */
     const RESPONSE_FORMAT_XML = 'xml';
 
-    /**
-     * @var string
-     */
-    protected $responseFormat;
+    protected string $responseFormat;
 
-    /**
-     * @var string
-     */
-    protected $connection;
+    protected Connection $connection;
 
-    /**
-     * RestClient constructor.
-     * @param Connection $connection
-     * @param string $responseFormat
-     */
     public function __construct()
     {
         $this->setResponseFormat(config('laravel-moodle.format'));
@@ -53,13 +27,7 @@ class RestClient extends BaseAdapter
         parent::__construct($this->getConnection());
     }
 
-    /**
-     * Send API request
-     * @param $function
-     * @param array $arguments
-     * @return array|bool|float|int|\SimpleXMLElement|string
-     */
-    public function sendRequest($function, array $arguments = [])
+    public function sendRequest(string $function, array $arguments = []): mixed
     {
         $configuration = [
             self::OPTION_FUNCTION => $function,
@@ -80,41 +48,26 @@ class RestClient extends BaseAdapter
         return $formattedResponse;
     }
 
-    /**
-     * Build client instance
-     * @return HttpClient
-     */
-    protected function buildClient()
+    protected function buildClient(): HttpClient
     {
         return new HttpClient([
             'base_url' => $this->getEndPoint(),
             'base_uri' => $this->getEndPoint()
         ]);
-}
+    }
 
-    /**
-     * Set response format
-     * @param string $format
-     */
-    protected function setResponseFormat($format)
+    protected function setResponseFormat(string $format)
     {
         Assertion::inArray($format, [self::RESPONSE_FORMAT_JSON, self::RESPONSE_FORMAT_XML]);
         $this->responseFormat = $format;
     }
 
-    /**
-     * @return string|Connection
-     */
-    protected function getConnection()
+    protected function getConnection(): Connection
     {
         return $this->connection;
     }
 
-    /**
-     * @param $url
-     * @param $token
-     */
-    protected function setConnection($url, $token)
+    protected function setConnection(string $url, string $token)
     {
         $this->connection = new Connection($url, $token);
     }

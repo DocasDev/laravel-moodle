@@ -4,112 +4,63 @@ namespace DocasDev\LaravelMoodle\Clients;
 
 use DocasDev\LaravelMoodle\Connection;
 use DocasDev\LaravelMoodle\Exceptions\ApiException;
+use GuzzleHttp\Client as HttpClient;
+use \SoapClient as BaseSoapClient;
 use ReflectionClass;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 
-/**
- * Class BaseAdapter
- * @package DocasDev\LaravelMoodle\Clients
- */
 abstract class BaseAdapter implements ClientAdapterInterface
 {
     const SERVER_SCRIPT_PATH_TEMPLATE = 'webservice/%s/server.php';
     const OPTION_TOKEN = 'wstoken';
     const OPTION_FUNCTION = 'wsfunction';
 
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
 
-    /**
-     * @var mixed
-     */
-    protected $client;
+    protected mixed $client;
 
-    /**
-     * Build client instance
-     * @return mixed
-     */
-    abstract protected function buildClient();
+    abstract protected function buildClient(): BaseSoapClient|HttpClient;
 
-    /**
-     * Client constructor.
-     * @param Connection $connection
-     */
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
         $this->client = $this->buildClient();
     }
 
-    /**
-     * Get client
-     * @return mixed
-     */
-    protected function getClient()
+    protected function getClient(): mixed
     {
         return $this->client;
     }
 
-    /**
-     * Get connection
-     * @return Connection
-     */
-    protected function getConnection()
+    protected function getConnection(): Connection
     {
         return $this->connection;
     }
 
-    /**
-     * Get endpoint
-     * @param array $options
-     * @return string
-     */
-    protected function getEndPoint(array $options = [])
+    protected function getEndPoint(array $options = []): string
     {
         $url = $this->connection->getUrl() . '/' . $this->getScriptPath();
 
         return $options ? $url . '?' . http_build_query($options) : $url;
     }
 
-    /**
-     * Get client script path depends on protocol type
-     * @return string
-     */
-    protected function getScriptPath()
+    protected function getScriptPath(): string
     {
         return sprintf(self::SERVER_SCRIPT_PATH_TEMPLATE, $this->getProtocolType());
     }
 
-    /**
-     * Get client protocol type
-     * @return string
-     */
-    protected function getProtocolType()
+    protected function getProtocolType(): string
     {
         return $this->recognizeClientType();
     }
 
-    /**
-     * Recognize client type by client class name
-     * @return string
-     */
-    protected function recognizeClientType()
+    protected function recognizeClientType(): string
     {
         $reflectionClass = new ReflectionClass(static::class);
         return str_replace('client', '', strtolower($reflectionClass->getShortName()));
     }
 
-    /**
-     * Check if response contains exceptions
-     * @param mixed $response
-     * @throws ApiException
-     */
     protected function handleException($response)
     {
-        //TODO: convert response to array!
         $resp = collect($response)->toArray();
         if (array_key_exists('exception', $resp)) {
             throw new ApiException($response['errorcode'] . ': ' . $response['message']);

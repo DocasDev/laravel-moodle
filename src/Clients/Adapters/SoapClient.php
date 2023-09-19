@@ -5,23 +5,11 @@ namespace DocasDev\LaravelMoodle\Clients\Adapters;
 use DocasDev\LaravelMoodle\Clients\BaseAdapter;
 use \SoapClient as BaseSoapClient;
 
-/**
- * Class SoapClient
- * @package DocasDev\LaravelMoodle\Clients\Adapters
- *
- * @method BaseSoapClient getClient()
- */
 class SoapClient extends BaseAdapter
 {
     const OPTION_WSDL = 'wsdl';
 
-    /**
-     * Send API request
-     * @param $function
-     * @param array $arguments
-     * @return mixed
-     */
-    public function sendRequest($function, array $arguments = [])
+    public function sendRequest(string $function, array $arguments = []): mixed
     {
         $response = $this->getClient()->__soapCall($function, $arguments);
 
@@ -30,11 +18,7 @@ class SoapClient extends BaseAdapter
         return $response;
     }
 
-    /**
-     * Build client instance
-     * @return BaseSoapClient
-     */
-    protected function buildClient()
+    protected function buildClient(): BaseSoapClient
     {
         $endPoint = $this->getEndPoint([
             self::OPTION_WSDL  => 1,

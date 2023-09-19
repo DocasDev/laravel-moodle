@@ -2,9 +2,9 @@
 
 namespace DocasDev\LaravelMoodle\Services;
 
-use DocasDev\LaravelMoodle\Entities\Course as CourseItem;
-use DocasDev\LaravelMoodle\Entities\Dto\Course as CourseDto;
+use DocasDev\LaravelMoodle\Entities\Course as CourseEntity;
 use DocasDev\LaravelMoodle\Entities\CourseCollection;
+use DocasDev\LaravelMoodle\Entities\DTO\CourseDTO;
 
 /**
  * Class Course
@@ -44,10 +44,10 @@ class Course extends Service
 
     /**
      * Create new course
-     * @param \DocasDev\LaravelMoodle\Entities\Dto\Course[] ...$courses
+     * @param \DocasDev\LaravelMoodle\Entities\DTO\CourseDTO[] ...$courses
      * @return CourseCollection
      */
-    public function create(CourseDto ...$courses)
+    public function create(CourseDTO ...$courses)
     {
         $response = $this->sendRequest(
             'core_course_create_courses',
@@ -78,11 +78,11 @@ class Course extends Service
      */
     protected function getCourseCollection(array $courses)
     {
-        $courseItems = [];
-        foreach ($courses as $courseItem) {
-            $courseItems[] = new CourseItem($courseItem);
+        $CourseEntitys = [];
+        foreach ($courses as $CourseEntity) {
+            $CourseEntitys[] = new CourseEntity($CourseEntity);
         }
 
-        return new CourseCollection(...$courseItems);
+        return new CourseCollection(...$CourseEntitys);
     }
 }
