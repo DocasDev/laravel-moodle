@@ -2,19 +2,19 @@
 
 namespace DocasDev\LaravelMoodle\Entities\DTO;
 
+use DocasDev\LaravelMoodle\Shared\StaticCreateSelf;
+use DocasDev\LaravelMoodle\Shared\ToArray;
+
 class CourseDTO
 {
-    public int $id;
+    use StaticCreateSelf;
+    use ToArray;
+
+    public string $fullName;
 
     public string $shortName;
 
     public int $categoryId;
-
-    public int $categorySortOrder;
-
-    public string $fullName;
-
-    public string $displayName;
 
     public int $idNumber;
 
@@ -59,8 +59,4 @@ class CourseDTO
     public array $courseFormatOptions = [];
 
     public array $customfields = [];
-
-    public int $timeCreated;
-
-    public int $timeModified;
 }

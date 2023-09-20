@@ -6,31 +6,16 @@ use DocasDev\LaravelMoodle\Entities\Course as CourseEntity;
 use DocasDev\LaravelMoodle\Entities\CourseCollection;
 use DocasDev\LaravelMoodle\Entities\DTO\CourseDTO;
 
-/**
- * Class Course
- * @package DocasDev\LaravelMoodle\Services
- */
 class Course extends Service
 {
-    /**
-     * Get all courses by ids
-     * @param array $ids
-     * @return CourseCollection
-     */
-    public function getAll(array $ids = [])
+    public function getAll(array $ids = []): CourseCollection
     {
         $response = $this->sendRequest('core_course_get_courses', ['options' => ['ids' => $ids]]);
 
         return $this->getCourseCollection($response);
     }
 
-    /**
-     * Get course by field
-     * @param $field
-     * @param $value
-     * @return CourseCollection
-     */
-    public function getByField($field, $value)
+    public function getByField(string $field, mixed $value): CourseCollection
     {
         $arguments = [
             'field' => $field,
@@ -42,12 +27,7 @@ class Course extends Service
         return $this->getCourseCollection($response['courses']);
     }
 
-    /**
-     * Create new course
-     * @param \DocasDev\LaravelMoodle\Entities\DTO\CourseDTO[] ...$courses
-     * @return CourseCollection
-     */
-    public function create(CourseDTO ...$courses)
+    public function create(CourseDTO ...$courses): CourseCollection
     {
         $response = $this->sendRequest(
             'core_course_create_courses',
@@ -59,24 +39,14 @@ class Course extends Service
         return $this->getCourseCollection($response);
     }
 
-    /**
-     * Delete courses by ids
-     * @param array $ids
-     * @return mixed
-     */
-    public function delete(array $ids = [])
+    public function delete(array $ids = []): mixed
     {
         $response = $this->sendRequest('core_course_delete_courses', ['courseids' => $ids]);
 
         return $response;
     }
 
-    /**
-     * Get course collection by course array
-     * @param array $courses
-     * @return CourseCollection
-     */
-    protected function getCourseCollection(array $courses)
+    protected function getCourseCollection(array $courses): CourseCollection
     {
         $CourseEntitys = [];
         foreach ($courses as $CourseEntity) {

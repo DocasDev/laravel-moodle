@@ -2,6 +2,8 @@
 
 namespace DocasDev\LaravelMoodle\Entities;
 
+use DocasDev\LaravelMoodle\Entities\DTO\CourseDTO;
+
 class Course extends Entity
 {
     public int $id;
@@ -63,4 +65,9 @@ class Course extends Entity
     public int $timeCreated;
 
     public int $timeModified;
+
+    public function toDTO()
+    {
+        return CourseDTO::create($this->toArray());
+    }
 }
