@@ -7,9 +7,9 @@
 [![Build Status](https://img.shields.io/travis/docasdev/laravel-moodle/main.svg?style=flat-square)](https://travis-ci.org/docasdev/laravel-moodle)
 [![Total Downloads](https://img.shields.io/packagist/dt/docasdev/laravel-moodle.svg?style=flat-square)](https://packagist.org/packages/docasdev/laravel-moodle)
 
-| **Laravel**  |  **laravel-modules** |
-|---|---|
-| ^10.10  | ^1.0  |
+| **Laravel**  |  **Moodle** |  **laravel-modules** |
+|---|---|---|
+| ^10.10  | ^4.2  | ^1.0  |
 
 `docasdev/laravel-moodle` is a Laravel package which created way to interact with moodle through api/webservice.
 

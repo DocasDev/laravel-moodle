@@ -2,14 +2,14 @@
 
 namespace DocasDev\LaravelMoodle\Services;
 
-use DocasDev\LaravelMoodle\Clients\ClientAdapterInterface;
+use DocasDev\LaravelMoodle\Clients\Contracts\ClientAdapterContract;
 use ReflectionClass;
 
 abstract class Service
 {
-    private ClientAdapterInterface $client;
+    private ClientAdapterContract $client;
 
-    public function __construct(ClientAdapterInterface $client)
+    public function __construct(ClientAdapterContract $client)
     {
         $this->client = $client;
     }

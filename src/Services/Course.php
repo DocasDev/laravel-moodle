@@ -48,11 +48,11 @@ class Course extends Service
 
     protected function getCourseCollection(array $courses): CourseCollection
     {
-        $CourseEntitys = [];
-        foreach ($courses as $CourseEntity) {
-            $CourseEntitys[] = new CourseEntity($CourseEntity);
+        $courseEntities = [];
+        foreach ($courses as $courseEntity) {
+            $courseEntities[] = CourseEntity::create($courseEntity);
         }
 
-        return new CourseCollection(...$CourseEntitys);
+        return new CourseCollection(...$courseEntities);
     }
 }

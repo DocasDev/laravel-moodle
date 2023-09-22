@@ -58,9 +58,9 @@ class Course extends Entity
 
     public string $forceTheme;
 
-    public array $courseFormatOptions = [];
+    public array $courseFormatOptions;
 
-    public array $customfields = [];
+    public array $customfields;
 
     public int $timeCreated;
 

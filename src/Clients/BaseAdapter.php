@@ -2,19 +2,19 @@
 
 namespace DocasDev\LaravelMoodle\Clients;
 
+use DocasDev\LaravelMoodle\Clients\Contracts\ClientAdapterContract;
 use DocasDev\LaravelMoodle\Connection;
-use DocasDev\LaravelMoodle\Exceptions\ApiException;
 use GuzzleHttp\Client as HttpClient;
 use \SoapClient as BaseSoapClient;
 use ReflectionClass;
 
-abstract class BaseAdapter implements ClientAdapterInterface
+abstract class BaseAdapter implements ClientAdapterContract
 {
     const SERVER_SCRIPT_PATH_TEMPLATE = 'webservice/%s/server.php';
     const OPTION_TOKEN = 'wstoken';
     const OPTION_FUNCTION = 'wsfunction';
 
-    private Connection $connection;
+    protected Connection $connection;
 
     protected mixed $client;
 
@@ -29,11 +29,6 @@ abstract class BaseAdapter implements ClientAdapterInterface
     protected function getClient(): mixed
     {
         return $this->client;
-    }
-
-    protected function getConnection(): Connection
-    {
-        return $this->connection;
     }
 
     protected function getEndPoint(array $options = []): string
@@ -59,11 +54,13 @@ abstract class BaseAdapter implements ClientAdapterInterface
         return str_replace('client', '', strtolower($reflectionClass->getShortName()));
     }
 
-    protected function handleException($response)
+    protected function getConnection(): Connection
     {
-        $resp = collect($response)->toArray();
-        if (array_key_exists('exception', $resp)) {
-            throw new ApiException($response['errorcode'] . ': ' . $response['message']);
-        }
+        return $this->connection;
+    }
+
+    protected function setConnection(string $url, string $token)
+    {
+        $this->connection = new Connection($url, $token);
     }
 }

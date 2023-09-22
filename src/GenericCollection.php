@@ -5,31 +5,16 @@ namespace DocasDev\LaravelMoodle;
 use IteratorAggregate;
 use ArrayIterator;
 
-/**
- * Class GenericCollection
- * @package DocasDev\LaravelMoodle\Entities
- */
 abstract class GenericCollection implements IteratorAggregate
 {
-    /**
-     * @var array
-     */
-    protected $items;
+    protected array $items;
 
-    /**
-     * Get collection items
-     * @return array
-     */
-    public function toArray()
+    public function toArray(): array
     {
         return $this->items;
     }
 
-    /**
-     * Get iterator
-     * @return ArrayIterator
-     */
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->items);
     }

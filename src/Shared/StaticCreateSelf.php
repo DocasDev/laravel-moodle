@@ -2,25 +2,24 @@
 
 namespace DocasDev\LaravelMoodle\Shared;
 
-use ReflectionProperty;
+use ReflectionObject;
 
 trait StaticCreateSelf
 {
     public static function create(array $data): self
     {
-        $dto = new self();
+        $className = static::class;
+        $obj = new $className();
+        $ro = new ReflectionObject($obj);
 
-        foreach ($data as $key => $value) {
-            if (!property_exists($dto, $key))
+        foreach ($ro->getProperties() as $property) {
+            $key = mb_convert_case($property->getName(), MB_CASE_LOWER);
+            if(!array_key_exists($key, $data))
                 continue;
 
-            $rp = new ReflectionProperty(get_class($dto), $key);
-            if(gettype($value) !== $rp->hasType())
-                continue;
-
-            $dto->$key = $value;
+            $property->setValue($obj, $data[$key]);
         }
 
-        return $dto;
+        return $obj;
     }
 }

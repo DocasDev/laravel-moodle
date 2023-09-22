@@ -40,7 +40,7 @@ class CourseDTO
 
     public int $visible;
 
-    public int $hiddensections;
+    public int $hiddenSections;
 
     public int $groupMode;
 
@@ -56,7 +56,7 @@ class CourseDTO
 
     public string $forceTheme;
 
-    public array $courseFormatOptions = [];
+    public array $courseFormatOptions;
 
-    public array $customfields = [];
+    public array $customFields;
 }

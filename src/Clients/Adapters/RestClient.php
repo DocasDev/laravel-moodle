@@ -3,25 +3,19 @@
 namespace DocasDev\LaravelMoodle\Clients\Adapters;
 
 use DocasDev\LaravelMoodle\Clients\BaseAdapter;
-use DocasDev\LaravelMoodle\Connection;
-use Assert\Assertion;
+use DocasDev\LaravelMoodle\Clients\Contracts\ResponseFormatContract;
+use Exception;
 use GuzzleHttp\Client as HttpClient;
 
 class RestClient extends BaseAdapter
 {
     const OPTION_FORMAT = 'moodlewsrestformat';
 
-    const RESPONSE_FORMAT_JSON = 'json';
-
-    const RESPONSE_FORMAT_XML = 'xml';
-
-    protected string $responseFormat;
-
-    protected Connection $connection;
+    protected ResponseFormatContract $responseFormat;
 
     public function __construct()
     {
-        $this->setResponseFormat(config('laravel-moodle.format'));
+        $this->buildResponseFormat();
         $this->setConnection(config('laravel-moodle.url'), config('laravel-moodle.token'));
 
         parent::__construct($this->getConnection());
@@ -31,7 +25,7 @@ class RestClient extends BaseAdapter
     {
         $configuration = [
             self::OPTION_FUNCTION => $function,
-            self::OPTION_FORMAT   => $this->responseFormat,
+            self::OPTION_FORMAT   => $this->responseFormat->getFormatType(),
             self::OPTION_TOKEN    => $this->getConnection()->getToken(),
         ];
 
@@ -39,13 +33,9 @@ class RestClient extends BaseAdapter
             'form_params' => array_merge($configuration, $arguments)
         ]);
 
-        $this->handleException($response);
+        $this->responseFormat->formatResponse($response->getBody()->getContents());
 
-        $formattedResponse = $this->responseFormat === self::RESPONSE_FORMAT_JSON ?
-            json_decode($response->getBody(), true) :
-            simplexml_load_string($response->getBody());
-
-        return $formattedResponse;
+        return $this->responseFormat->getFormatedResponse();
     }
 
     protected function buildClient(): HttpClient
@@ -56,19 +46,16 @@ class RestClient extends BaseAdapter
         ]);
     }
 
-    protected function setResponseFormat(string $format)
+    protected function buildResponseFormat()
     {
-        Assertion::inArray($format, [self::RESPONSE_FORMAT_JSON, self::RESPONSE_FORMAT_XML]);
-        $this->responseFormat = $format;
-    }
+        $formatClassName = 'DocasDev\LaravelMoodle\Clients\ResponseFormat\ResponseFormat' . mb_convert_case(config('laravel-moodle.format'), MB_CASE_TITLE);
+        if(!class_exists($formatClassName))
+            throw new Exception("Class '$formatClassName' not found");
 
-    protected function getConnection(): Connection
-    {
-        return $this->connection;
-    }
+        $formatObject = new $formatClassName();
+        if(!($formatObject instanceof ResponseFormatContract))
+            throw new Exception("Class '$formatClassName' mismatch with 'ResponseFormatContract'");
 
-    protected function setConnection(string $url, string $token)
-    {
-        $this->connection = new Connection($url, $token);
+        $this->responseFormat = $formatObject;
     }
 }
