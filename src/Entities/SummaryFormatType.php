@@ -2,10 +2,6 @@
 
 namespace DocasDev\LaravelMoodle\Entities;
 
-/**
- * Class SummaryFormatType
- * @package DocasDev\LaravelMoodle\Entities
- */
 class SummaryFormatType
 {
     const TYPE_MOODLE = 0;

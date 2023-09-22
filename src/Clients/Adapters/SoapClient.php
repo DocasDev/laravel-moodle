@@ -3,7 +3,6 @@
 namespace DocasDev\LaravelMoodle\Clients\Adapters;
 
 use DocasDev\LaravelMoodle\Clients\BaseAdapter;
-use DocasDev\LaravelMoodle\Connection;
 use DocasDev\LaravelMoodle\Exceptions\MoodleException;
 use \SoapClient as BaseSoapClient;
 

@@ -4,57 +4,30 @@ namespace DocasDev\LaravelMoodle;
 
 use Assert\Assertion;
 
-/**
- * Class Connection
- * @package DocasDev\LaravelMoodle
- */
 class Connection
 {
-    /**
-     * @var string
-     */
-    protected $url;
+    protected string $url;
 
-    /**
-     * @var string
-     */
-    protected $token;
+    protected string $token;
 
-    /**
-     * Connection constructor.
-     * @param string $url
-     * @param string $token
-     */
-    public function __construct($url, $token)
+    public function __construct(string $url, string $token)
     {
         $this->setUrl($url);
         $this->token = $token;
     }
 
-    /**
-     * Set URL
-     * @param string $url
-     */
-    protected function setUrl($url)
+    protected function setUrl(string $url)
     {
         Assertion::url($url);
         $this->url = trim($url, '/');
     }
 
-    /**
-     * Get URL
-     * @return string
-     */
-    public function getUrl()
+    public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * Get token
-     * @return string
-     */
-    public function getToken()
+    public function getToken(): string
     {
         return $this->token;
     }
