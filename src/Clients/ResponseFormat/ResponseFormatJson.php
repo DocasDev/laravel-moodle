@@ -15,6 +15,9 @@ class ResponseFormatJson extends ResponseFormatContract
 
     protected function handleException()
     {
+        if(!is_array($this->formatedResponse))
+            return;
+
         if (array_key_exists('exception', $this->formatedResponse)) {
             $message = $this->formatedResponse['message'] . ' | ERRORCODE: ' . $this->formatedResponse['errorcode'];
             throw new MoodleException($this->formatedResponse['errorcode'], $message);

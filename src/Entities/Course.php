@@ -18,7 +18,7 @@ class Course extends Entity
 
     public string $displayName;
 
-    public int $idNumber;
+    public string $idNumber;
 
     public string $summary;
 

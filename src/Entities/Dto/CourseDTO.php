@@ -16,7 +16,7 @@ class CourseDTO
 
     public int $categoryId;
 
-    public int $idNumber;
+    public string $idNumber;
 
     public string $summary;
 

@@ -4,10 +4,15 @@ namespace DocasDev\LaravelMoodle\Services;
 
 use DocasDev\LaravelMoodle\Entities\Course as CourseEntity;
 use DocasDev\LaravelMoodle\Entities\CourseCollection;
-use DocasDev\LaravelMoodle\Entities\DTO\CourseDTO;
+use DocasDev\LaravelMoodle\Entities\Dto\CourseDTO;
 
 class Course extends Service
 {
+    public function getByPrimaryKey(int $id): CourseCollection
+    {
+        return $this->getByField('id', $id);
+    }
+
     public function getAll(array $ids = []): CourseCollection
     {
         $response = $this->sendRequest('core_course_get_courses', ['options' => ['ids' => $ids]]);

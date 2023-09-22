@@ -6,7 +6,7 @@ use ReflectionObject;
 
 trait StaticCreateSelf
 {
-    public static function create(array $data): self
+    public static function create(array $data): static
     {
         $className = static::class;
         $obj = new $className();

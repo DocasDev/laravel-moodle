@@ -4,19 +4,19 @@ namespace DocasDev\LaravelMoodle\Entities;
 
 use DocasDev\LaravelMoodle\GenericCollection;
 
-class CourseCollection extends GenericCollection
+class CategoryCollection extends GenericCollection
 {
-    public function __construct(Course ...$items)
+    public function __construct(Category ...$items)
     {
         $this->items = $items;
     }
 
-    public function add(Course $item)
+    public function add(Category $item)
     {
         $this->items[$item->id] = $item;
     }
 
-    public function remove(Course $item)
+    public function remove(Category $item)
     {
         $this->removeById($item->id);
     }

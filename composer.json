@@ -2,7 +2,7 @@
     "name": "docasdev/laravel-moodle",
     "description": "Laravel Moodle client",
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "authors": [
         {
             "name": "Docas Developement",
@@ -10,7 +10,7 @@
             "homepage": "https://github.com/DocasDev/laravel-moodle"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
         "guzzlehttp/guzzle": "^7.2",
