@@ -1,6 +1,6 @@
 <?php
 
-namespace DocasDev\LaravelMoodle\Entities\DTO;
+namespace DocasDev\LaravelMoodle\Entities\Dto;
 
 use DocasDev\LaravelMoodle\Shared\StaticCreateSelf;
 use DocasDev\LaravelMoodle\Shared\ToArray;

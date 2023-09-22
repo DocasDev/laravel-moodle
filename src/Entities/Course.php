@@ -2,7 +2,7 @@
 
 namespace DocasDev\LaravelMoodle\Entities;
 
-use DocasDev\LaravelMoodle\Entities\DTO\CourseDTO;
+use DocasDev\LaravelMoodle\Entities\Dto\CourseDTO;
 
 class Course extends Entity
 {
